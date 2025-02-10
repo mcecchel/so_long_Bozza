@@ -6,19 +6,24 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/07 16:23:03 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/10 17:20:11 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
+#     src/ → codice sorgente
+#     includes/ → file di intestazione (.h)
+#     assets/ → immagini per gli sprite
+#     maps/ → file .ber di esempio
 NAME	= so_long
 CC		= gcc
 RM		= rm -f
 CFLAGS	= -Wall -Wextra -Werror -g -I. -ILibft_complete
 
 SRC		= src/map_utils.c \
-		src/valid_path.c \
-		src/parse_map.c \
+		src/validate_file.c \
+		src/load_map.c \
+		src/map_checks.c \
+		main.c
 
 OBJ = $(SRC:.c=.o)
 
