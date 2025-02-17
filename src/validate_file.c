@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:20:36 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/10 17:49:18 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:32:34 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	file_error_exit(const char *message)
 {
-	write(2, message, ft_strlen(message));
+	size_t	return_value;
+
+	return_value = write(2, message, ft_strlen(message));
+	(void)return_value;
 	exit(1);
 }
 

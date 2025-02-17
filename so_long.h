@@ -2,6 +2,7 @@
 # define SO_LONG_H
 
 #include "libft.h"
+#include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +14,6 @@
 #define PLAYER 'P'
 #define COLLECTIBLE 'C'
 #define EXIT 'E'
-#define MAX_ROWS 100// Dimensione massima della mappa
 
 typedef struct s_map
 {
@@ -31,10 +31,20 @@ typedef struct s_parse
 	int		exit_game;
 }				t_parse;
 
+// #define TILE_SIZE 32
+typedef struct s_sprites
+{
+    void *player;
+    void *wall;
+    void *collectible;
+    void *exit;
+}				t_sprites;
+
 typedef struct s_game
 {
-	t_map	map;
-	t_parse	parse;
+	t_map		map;
+	t_parse		parse;
+	t_sprites	sprites;
 	
 }				t_game;	
 

@@ -6,41 +6,93 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/10 17:20:11 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/17 11:34:50 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#     src/ → codice sorgente
-#     includes/ → file di intestazione (.h)
-#     assets/ → immagini per gli sprite
-#     maps/ → file .ber di esempio
-NAME	= so_long
-CC		= gcc
-RM		= rm -f
-CFLAGS	= -Wall -Wextra -Werror -g -I. -ILibft_complete
+# NAME	= so_long
+# CC		= gcc
+# RM		= rm -f
+# CFLAGS	= -Wall -Wextra -Werror -g -I. -ILibft_complete -I. -Imlx_linux -O3 -c $< -o $@
+
+# SRC		= src/map_utils.c \
+# 		src/validate_file.c \
+# 		src/load_map.c \
+# 		src/map_checks.c \
+# 		main.c
+
+# OBJ = $(SRC:.c=.o)
+
+# all: $(NAME)
+
+# $(NAME): $(OBJ)
+# 	$(MAKE) -C Libft_complete
+# 	$(CC) $(CFLAGS) $(OBJ) -LLibft_complete -lft -o $(NAME)
+# 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)	
+# 	$(MAKE) kira
+
+# clean:
+# 	$(MAKE) -C Libft_complete clean
+# 	rm -f $(OBJ)
+
+# fclean: clean
+# 	rm -f $(NAME)
+# 	$(MAKE) -C Libft_complete fclean
+
+# re: fclean all
+# .SILENT:
+NAME		= so_long
+CC			= gcc
+RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror -g -I. -ILibft_complete -Imlx_linux -O3
+
+# MiniLibX
+MLX_DIR		= mlx_linux
+MLX_LIB		= $(MLX_DIR)/libmlx.a
+MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
+
+# Libft
+LIBFT_DIR	= Libft_complete
+LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 
 SRC		= src/map_utils.c \
-		src/validate_file.c \
-		src/load_map.c \
-		src/map_checks.c \
-		main.c
+		  src/validate_file.c \
+		  src/load_map.c \
+		  src/map_checks.c \
+		  src/parkour.c \
+		  main.c
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
-$(NAME): $(OBJ)
-	$(MAKE) -C Libft_complete
-	$(CC) $(CFLAGS) $(OBJ) -LLibft_complete -lft -o $(NAME)
+$(LIBFT_LIB):
+	@echo "🔧 Compilando Libft..."
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX_LIB):
+	@echo "🔧 Compilando MiniLibX..."
+	$(MAKE) -C $(MLX_DIR)
+
+$(NAME): $(OBJS)
+	@echo "🚀 Creando $(NAME)..."
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT_LIB)
 	$(MAKE) kira
 
+%.o: %.c
+	@echo "🛠  Compilando $<..."
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	$(MAKE) -C Libft_complete clean
-	rm -f $(OBJ)
+	@echo "🗑 Pulizia..."
+	$(RM) $(OBJS)
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C Libft_complete fclean
+	@echo "🧹 Pulizia totale..."
+	$(RM) $(NAME)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 .SILENT:

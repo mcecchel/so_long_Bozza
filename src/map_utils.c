@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:37:38 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/10 15:33:07 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:08:42 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	free_matrix(char **matrix)
 
 void	error_exit(const char *message, t_game *game)
 {
-	write(2, message, ft_strlen(message));
+	size_t	return_value;
+
+	return_value = write(2, message, ft_strlen(message));
+	(void)return_value;
 	free_matrix(game->map.map);
 	exit(1);
 }
