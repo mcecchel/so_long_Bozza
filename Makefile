@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/17 11:34:50 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/17 16:00:54 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@
 NAME		= so_long
 CC			= gcc
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror -g -I. -ILibft_complete -Imlx_linux -O3
+CFLAGS		= -Wall -Wextra -Werror -g -I. -ILibft_complete -Imlx_linux
 
 # MiniLibX
 MLX_DIR		= mlx_linux
@@ -84,13 +84,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "🗑 Pulizia..."
 	$(RM) $(OBJS)
 	$(MAKE) clean -C $(LIBFT_DIR)
 	$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
-	@echo "🧹 Pulizia totale..."
 	$(RM) $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 

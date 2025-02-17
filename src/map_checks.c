@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:05 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/10 18:18:30 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:09:39 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,23 +113,23 @@ void	find_player(t_game *game, int *pos_x, int *pos_y)
 	}
 }
 
-void	flood_fill(t_game *game, int x, int y)
+void	flood_fill(t_game *game, char **map, int x, int y)
 {
 	// Check se siamo fuori dalla mappa o su un muro, fermiamo la ricerca
 	if (x < 0 || y < 0 || x >= game->map.columns || y >= game->map.rows
-		|| game->map.map[y][x] == '1' || game->map.map[y][x] == 'V')
+		|| map[y][x] == '1' || map[y][x] == 'V')
 		return ;
 	// Segna la posizione come visitata
-	game->map.map[y][x] = 'V';
+	map[y][x] = 'V';
 	// Espandi la ricerca in tutte le direzioni
-	flood_fill(game, x + 1, y);
-	flood_fill(game, x - 1, y);
-	flood_fill(game, x, y + 1);
-	flood_fill(game, x, y - 1);
+	flood_fill(game, map, x + 1, y);
+	flood_fill(game, map, x - 1, y);
+	flood_fill(game, map, x, y + 1);
+	flood_fill(game, map, x, y - 1);
 }
 
 // Controlla se ci sono ancora 'C' o 'E' non raggiunti
-int	check_reachability(t_game *game)
+int	check_reachability(t_game *game, char **map)
 {
 	int			i;
 	int			j;
@@ -138,9 +138,9 @@ int	check_reachability(t_game *game)
 	while (i < game->map.rows)
 	{
 		j = 0;
-		while (game->map.map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
-			if (game->map.map[i][j] == 'C' || game->map.map[i][j] == 'E')
+			if (map[i][j] == 'C' || map[i][j] == 'E')
 				return (0);// Se ci sono ancora 'C' o 'E', la mappa non è valida
 			j++;
 		}
@@ -167,9 +167,9 @@ int	validate_path(t_game *game, int pos_x, int pos_y)
 		i++;
 	}
 	// Espando ricorsivamente il percorso, marcando le posizioni già visitate
-	flood_fill(game, pos_x, pos_y);
+	flood_fill(game, map_copy, pos_x, pos_y);
 	// Dopo il riempimento, controlla se E e tutti i C sono stati raggiunti
-	reached = check_reachability(game);
+	reached = check_reachability(game, map_copy);
 	free_matrix(map_copy);
 	return (reached);
 }

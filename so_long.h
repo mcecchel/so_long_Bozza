@@ -31,11 +31,12 @@ typedef struct s_parse
 	int		exit_game;
 }				t_parse;
 
-// #define TILE_SIZE 32
+#define TILE_SIZE 32 // Costante per la dimensione degli sprites
 typedef struct s_sprites
 {
     void *player;
     void *wall;
+	void *floor;
     void *collectible;
     void *exit;
 }				t_sprites;
@@ -59,8 +60,8 @@ int		check_map_elements(t_game *game);
 int		validate_map(t_game *game);
 // Check path validity
 void	find_player(t_game *game, int *pos_x, int *pos_y);
-void	flood_fill(t_game *game, int x, int y);
-int		check_reachability(t_game *game);
+void	flood_fill(t_game *game, char **map, int x, int y);
+int		check_reachability(t_game *game, char **map);
 int		validate_path(t_game *game, int pos_x, int pos_y);
 
 // Validate file
