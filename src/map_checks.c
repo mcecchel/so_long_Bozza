@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:05 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/17 16:09:39 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:51:00 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	check_map_elements(t_game *game)
 			else if (game->map.map[i][j] == 'C')
 				game->parse.collectible++;
 			else if (game->map.map[i][j] == 'E')
-			game->parse.exit_game++;
+				game->parse.exit_game++;
+			else if (game->map.map[i][j] != '1' && game->map.map[i][j] != '0')
+				return (0);// Mappa non valida
 			j++;
 		}
 		i++;

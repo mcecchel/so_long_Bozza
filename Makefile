@@ -6,54 +6,22 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/17 16:00:54 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/18 16:38:28 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# NAME	= so_long
-# CC		= gcc
-# RM		= rm -f
-# CFLAGS	= -Wall -Wextra -Werror -g -I. -ILibft_complete -I. -Imlx_linux -O3 -c $< -o $@
-
-# SRC		= src/map_utils.c \
-# 		src/validate_file.c \
-# 		src/load_map.c \
-# 		src/map_checks.c \
-# 		main.c
-
-# OBJ = $(SRC:.c=.o)
-
-# all: $(NAME)
-
-# $(NAME): $(OBJ)
-# 	$(MAKE) -C Libft_complete
-# 	$(CC) $(CFLAGS) $(OBJ) -LLibft_complete -lft -o $(NAME)
-# 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)	
-# 	$(MAKE) kira
-
-# clean:
-# 	$(MAKE) -C Libft_complete clean
-# 	rm -f $(OBJ)
-
-# fclean: clean
-# 	rm -f $(NAME)
-# 	$(MAKE) -C Libft_complete fclean
-
-# re: fclean all
-# .SILENT:
 NAME		= so_long
-CC			= gcc
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror -g -I. -ILibft_complete -Imlx_linux
+CFLAGS		= -Wall -Wextra -Werror -g -pedantic -I. -ILibft_complete -Imlx_linux
+
+# Libft
+LIBFT_DIR	= Libft_complete
+LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 
 # MiniLibX
 MLX_DIR		= mlx_linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
-
-# Libft
-LIBFT_DIR	= Libft_complete
-LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 
 SRC		= src/map_utils.c \
 		  src/validate_file.c \
