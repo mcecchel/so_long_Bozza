@@ -41,11 +41,18 @@ typedef struct s_sprites
     void *exit;
 }				t_sprites;
 
+typedef struct s_window
+{
+	void	*mlx;
+	void	*mlx_win;
+}				t_window;
+
 typedef struct s_game
 {
 	t_map		map;
 	t_parse		parse;
 	t_sprites	sprites;
+	t_window	window;
 	
 }				t_game;	
 

@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/18 16:38:28 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/20 16:00:52 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC		= src/map_utils.c \
 		  src/validate_file.c \
 		  src/load_map.c \
 		  src/map_checks.c \
-		  src/parkour.c \
+		  src/player_moves.c \
+		  src/initialize_game.c \
 		  main.c
 
 OBJS = $(SRC:.c=.o)
