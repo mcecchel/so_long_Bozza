@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:51:36 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 16:59:04 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:29:35 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	find_player(t_game *game)
 		game->map.map[game->player.py][game->player.px] = '0';
 		ft_printf("Item collected! You have: %d of %d\n", game->player.collected_items, game->player.total_collectibles);
 	}
-}
+} */
 
 bool	all_collected(t_game *game)
 {
@@ -92,17 +92,3 @@ bool	all_collected(t_game *game)
 	return (false);
 }
 
-void	player_after_collectible(t_game *game, int new_x, int new_y)
-{
-	if (game->map.map[new_y][new_x] != '1')// Se non è un muro
-	{
-		collect_item(game);// Controlla se c’è un collezionabile
-		game->map.map[game->player.py][game->player.px] = '0';// Vecchia posizione diventa pavimento
-		game->player.px = new_x;
-		game->player.py = new_y;
-		game->map.map[new_y][new_x] = 'P';// Nuova posizione del player
-		if (all_collected(game))
-			ft_printf("All items collected!\n");
-	}
-	
-} */

@@ -6,11 +6,12 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 16:56:20 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:29:28 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+void	free_resources(t_game *game);
 
 void	draw_map(t_game *game, void *mlx, void *mlx_win)
 {
@@ -46,7 +47,10 @@ int	handle_keys(int keycode, t_game *game)
 	new_x_pos = game->player.px;
 	new_y_pos = game->player.py;
 	if (keycode == XK_Escape)// ESC
+	{
+		free_resources(game);
 		exit(0);
+	}
 	else if (keycode == XK_Up)// Freccia su
 		new_y_pos -= 1;// Va di 1 su
 	else if (keycode == XK_Down)// Freccia giù
@@ -66,8 +70,6 @@ int	handle_keys(int keycode, t_game *game)
 			game->player.collected_items++;
 			game->map.map[new_y_pos][new_x_pos] = '0';
 		}
-		
-		// mlx_clear_window(game->window.mlx, game->window.mlx_win);
 		draw_map(game, game->window.mlx, game->window.mlx_win);
 	}
 	return (0);
