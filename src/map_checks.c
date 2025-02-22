@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:05 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/18 16:51:00 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:07:50 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ int	check_map_elements(t_game *game)
 		while (j < game->map.columns && game->map.map[i][j])
 		{
 			if (game->map.map[i][j] == 'P')
+			{
+				game->player.px= j;
+				game->player.py = i;
 				game->parse.player++;
+			}
 			else if (game->map.map[i][j] == 'C')
 				game->parse.collectible++;
 			else if (game->map.map[i][j] == 'E')
@@ -90,29 +94,6 @@ int	validate_map(t_game *game)
 	if (!check_map_elements(game))
 		return (0);
 	return (1);
-}
-
-void	find_player(t_game *game, int *pos_x, int *pos_y)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	while (i < game->map.rows)
-	{
-		j = 0;
-		while (game->map.map[i][j] != '\0')
-		{
-			if (game->map.map[i][j] == 'P')
-			{
-				*pos_x = j;
-				*pos_y = i;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 void	flood_fill(t_game *game, char **map, int x, int y)
@@ -158,7 +139,7 @@ int	validate_path(t_game *game, int pos_x, int pos_y)
 	int			reached;
 
 	i = 0;
-	find_player(game, &pos_x, &pos_y);
+	find_player(game);
 	// Crea una copia della mappa per non modificare l'originale
 	map_copy = ft_calloc(game->map.rows + 1, sizeof(char *));
 	while (i < game->map.rows)

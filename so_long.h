@@ -3,8 +3,13 @@
 
 #include "libft.h"
 #include <mlx.h>
+#include <X11/keysym.h>
+#include <X11/keysymdef.h>
+#include <mlx_int.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -20,9 +25,15 @@ typedef struct s_map
 	char	**map;
 	int		rows;
 	int		columns; 
-    int		player_x;
-    int		player_y;
 }				t_map;
+
+typedef struct s_player
+{
+	int		px;
+	int		py;
+	int		collected_items;
+	int		total_collectibles;
+}				t_player;
 
 typedef struct s_parse
 {
@@ -45,6 +56,8 @@ typedef struct s_window
 {
 	void	*mlx;
 	void	*mlx_win;
+	int		img_width;
+	int		img_height;
 }				t_window;
 
 typedef struct s_game
@@ -53,6 +66,7 @@ typedef struct s_game
 	t_parse		parse;
 	t_sprites	sprites;
 	t_window	window;
+	t_player	player;
 	
 }				t_game;	
 
@@ -66,7 +80,7 @@ int		check_map_borders(t_game *game);
 int		check_map_elements(t_game *game);
 int		validate_map(t_game *game);
 // Check path validity
-void	find_player(t_game *game, int *pos_x, int *pos_y);
+void	find_player(t_game *game);
 void	flood_fill(t_game *game, char **map, int x, int y);
 int		check_reachability(t_game *game, char **map);
 int		validate_path(t_game *game, int pos_x, int pos_y);

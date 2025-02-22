@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:45:30 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/19 13:02:06 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:54:13 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**read_map(const char *filename, t_game *game)
 		file_error_exit("Error\nInvalid map\n");
 		free_matrix(game->map.map);
 	}
-	if (!validate_path(game, game->map.player_x, game->map.player_y))
+	if (!validate_path(game, game->player.px, game->player.py))
 		error_exit("Error\nInvalid path\n", game);
 	return (game->map.map);
 }

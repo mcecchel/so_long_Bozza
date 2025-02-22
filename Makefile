@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/20 16:00:52 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/22 16:01:50 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ MLX_DIR		= mlx_linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 
-SRC		= src/map_utils.c \
+SRC		= src/game_utils.c \
 		  src/validate_file.c \
 		  src/load_map.c \
 		  src/map_checks.c \
-		  src/player_moves.c \
+		  src/manage_collectibles.c \
 		  src/initialize_game.c \
 		  main.c
 
@@ -45,7 +45,7 @@ $(MLX_LIB):
 
 $(NAME): $(OBJS)
 	@echo "🚀 Creando $(NAME)..."
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT_LIB) -lm
 	$(MAKE) kira
 
 %.o: %.c
