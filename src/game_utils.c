@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 14:23:17 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:31:27 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ void	error_exit(const char *message, t_game *game)
 // Free resources
 void	destroy_sprites(t_game *game, void *mlx)
 {
-	mlx_destroy_image(mlx, game->sprites.wall);
-	mlx_destroy_image(mlx, game->sprites.floor);
-	mlx_destroy_image(mlx, game->sprites.player);
-	mlx_destroy_image(mlx, game->sprites.collectible);
-	mlx_destroy_image(mlx, game->sprites.exit);
+	if (game->sprites.wall)
+		mlx_destroy_image(mlx, game->sprites.wall);
+	if (game->sprites.floor)
+		mlx_destroy_image(mlx, game->sprites.floor);
+	if (game->sprites.player)
+		mlx_destroy_image(mlx, game->sprites.player);
+	if (game->sprites.collectible)
+		mlx_destroy_image(mlx, game->sprites.collectible);
+	if (game->sprites.exit)
+		mlx_destroy_image(mlx, game->sprites.exit);
 }
 
 void	free_resources(t_game *game)

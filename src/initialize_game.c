@@ -6,13 +6,35 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/23 16:16:34 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:44:20 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 void	free_resources(t_game *game);
 bool	all_collected(t_game *game);
+
+/* void	randomize_coll_sprite(t_game *game)
+{
+	int width;
+	int height;
+	int random_sprite = rand() % 4; // Assuming you have 3 different collectible sprites
+
+	if (random_sprite == 0)
+		game->sprites.collectible = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll1.xpm", &width, &height);
+	else if (random_sprite == 1)
+		game->sprites.collectible = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll2.xpm", &width, &height);
+	else if (random_sprite == 2)
+		(game->sprites.collectible = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll3.xpm", &width, &height));
+	else if (random_sprite == 3)
+		(game->sprites.collectible = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll4.xpm", &width, &height));
+	if (!game->sprites.collectible)
+	{
+		printf("Error\nFailed to load collectible sprite\n");
+		free_resources(game);
+		exit(1);
+	}
+} */
 
 void	draw_map(t_game *game, void *mlx, void *mlx_win)
 {
@@ -74,13 +96,20 @@ int	handle_keys(int keycode, t_game *game)
 		}
 		// Controlla se il giocatore ha raggiunto l'uscita
 		draw_map(game, game->window.mlx, game->window.mlx_win);
-		if (all_collected(game) && game->map.map[new_y_pos][new_x_pos] == 'E')
+		if (game->map.map[new_y_pos][new_x_pos] == 'E' && all_collected(game))
 		{ 
 			free_resources(game);
 			exit(0);
 		}
 	}
 	return (0);
+}
+
+bool	all_collected(t_game *game)
+{
+	if (game->player.collected_items == game->player.total_collectibles)
+		return (true);
+	return (false);
 }
 
 void	initialize_game(t_game *game, void *mlx, void *mlx_win)
