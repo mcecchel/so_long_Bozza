@@ -6,12 +6,13 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 17:29:28 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:16:34 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 void	free_resources(t_game *game);
+bool	all_collected(t_game *game);
 
 void	draw_map(t_game *game, void *mlx, void *mlx_win)
 {
@@ -69,8 +70,15 @@ int	handle_keys(int keycode, t_game *game)
 		{
 			game->player.collected_items++;
 			game->map.map[new_y_pos][new_x_pos] = '0';
+			printf("Item collected! You have: %d of %d\n", game->player.collected_items, game->player.total_collectibles);
 		}
+		// Controlla se il giocatore ha raggiunto l'uscita
 		draw_map(game, game->window.mlx, game->window.mlx_win);
+		if (all_collected(game) && game->map.map[new_y_pos][new_x_pos] == 'E')
+		{ 
+			free_resources(game);
+			exit(0);
+		}
 	}
 	return (0);
 }

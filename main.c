@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:18:42 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 14:24:54 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:12:34 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int ac, char **av)
 		error_exit("Error\nFailed to create window\n", &game);
 	initialize_game(&game, game.window.mlx, game.window.mlx_win);
 	mlx_hook(game.window.mlx_win, KeyPress, KeyPressMask, handle_keys, &game);
-	
 	mlx_loop(game.window.mlx);
 	free_resources(&game);
 	return (0);

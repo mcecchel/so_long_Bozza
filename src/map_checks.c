@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:24:05 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/22 14:07:50 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:04:59 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,27 @@ int	check_map_elements(t_game *game)
 		return (0);// Mappa non valida
 	return (1);
 }
+
+/* int	count_collectibles(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->player.total_collectibles = 0;
+	while (i < game->map.rows)
+	{
+		j = 0;
+		while (j < game->map.columns)
+		{
+			if (game->map.map[i][j] == 'C')
+				game->player.total_collectibles++;
+			j++;
+		}
+		i++;
+	}
+	return (game->player.total_collectibles);
+} */
 
 int	validate_map(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:45:30 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/21 15:54:13 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:04:41 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ char	**read_map(const char *filename, t_game *game)
 	}
 	if (!validate_path(game, game->player.px, game->player.py))
 		error_exit("Error\nInvalid path\n", game);
+	game->player.total_collectibles =  game->parse.collectible;
 	return (game->map.map);
 }
