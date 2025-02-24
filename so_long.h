@@ -42,7 +42,7 @@ typedef struct s_parse
 	int		exit_game;
 }				t_parse;
 
-#define TILE_SIZE 32 // Costante per la dimensione degli sprites
+#define TILE_SIZE 32// Costante per la dimensione degli sprites
 typedef struct s_sprites
 {
     void *player;
@@ -70,15 +70,23 @@ typedef struct s_game
 	
 }				t_game;	
 
-// Map utils
+// Utils
 void	free_matrix(char **matrix);
+void	destroy_sprites(t_game *game, void *mlx);
+void	free_resources(t_game *game);
+int		close_game(t_game *game);
+
+// Manage errors
 void	error_exit(const char *message, t_game *game);
+void	file_error_exit(const char *message);
 
 // Check map validity
 int		is_rectangular(t_game *game);
 int		check_map_borders(t_game *game);
+void	count_map_elements(t_game *game);
 int		check_map_elements(t_game *game);
 int		validate_map(t_game *game);
+
 // Check path validity
 void	find_player(t_game *game);
 void	flood_fill(t_game *game, char **map, int x, int y);
@@ -86,7 +94,6 @@ int		check_reachability(t_game *game, char **map);
 int		validate_path(t_game *game, int pos_x, int pos_y);
 
 // Validate file
-void	file_error_exit(const char *message);
 int		has_ber_extension(const char *filename);
 int		file_exists(const char *filename);
 int		is_folder(const char *filename);
@@ -98,5 +105,13 @@ int		count_lines(const char *filename);
 char	**load_map(const char *filename, t_game *game);
 char	**read_map(const char *filename, t_game *game);
 
-// int	main(int ac, char **av)
+// Game initialization
+void	draw_map(t_game *game, void *mlx, void *mlx_win);
+void	move_player(t_game *game, int new_x_pos, int new_y_pos);
+void	handle_keys(int keycode, t_game *game);
+bool	all_collected(t_game *game);
+void	initialize_game(t_game *game, void *mlx, void *mlx_win);
+
+int	main(int ac, char **av);
+
 #endif

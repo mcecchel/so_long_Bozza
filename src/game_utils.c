@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/23 16:31:27 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:38:14 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,7 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
-void	error_exit(const char *message, t_game *game)
-{
-	size_t	return_value;
-
-	return_value = write(2, message, ft_strlen(message));
-	(void)return_value;
-	free_matrix(game->map.map);
-	exit(1);
-}
-
-// Free resources
+// Free & exit game
 void	destroy_sprites(t_game *game, void *mlx)
 {
 	if (game->sprites.wall)
@@ -60,3 +50,9 @@ void	free_resources(t_game *game)
 	free(game->window.mlx);
 }
 
+int	close_game(t_game *game)
+{
+	free_resources(game);
+	exit(0);
+	return (0);
+}

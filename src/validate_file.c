@@ -6,25 +6,16 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:20:36 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/19 13:01:57 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:46:50 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	file_error_exit(const char *message)
-{
-	size_t	return_value;
-
-	return_value = write(2, message, ft_strlen(message));
-	(void)return_value;
-	exit(1);
-}
-
 int	has_ber_extension(const char *filename)
 {
 	const char	*extension;
-	
+
 	extension = ft_strrchr(filename, '.');
 	if (ft_strncmp(extension, ".ber", 4) != 0)
 		return (0);
@@ -34,15 +25,14 @@ int	has_ber_extension(const char *filename)
 int	file_exists(const char *filename)
 {
 	int	fd;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);// File non esiste o non può essere aperto
+		return (0);
 	close(fd);
 	return (1);
 }
 
-//Controllo se il file è una cartella leggendo il primo carattere
 int	is_folder(const char *filename)
 {
 	int		fd;
@@ -57,10 +47,10 @@ int	is_folder(const char *filename)
 int	is_readable(const char *filename)
 {
 	int	fd;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);// Se il read fallisce, non è leggibile
+		return (0);
 	close(fd);
 	return (1);
 }
@@ -69,7 +59,7 @@ void	validate_file(const char *filename)
 {
 	if (!has_ber_extension(filename))
 		file_error_exit("Error\nInvalid file extension\n");
-	else  if (!file_exists(filename))
+	else if (!file_exists(filename))
 		file_error_exit("Error\nFile does not exist\n");
 	else if (is_folder(filename))
 		file_error_exit("Error\nFile is a directory\n");

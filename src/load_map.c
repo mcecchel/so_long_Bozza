@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:45:30 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/23 16:04:41 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:43:57 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**load_map(const char *filename, t_game *game)
 
 char	**read_map(const char *filename, t_game *game)
 {
-	validate_file(filename);// Controlla il file prima di leggerlo
+	validate_file(filename);
 	game->map.map = load_map(filename, game);
 	if (!validate_map(game))
 	{
@@ -73,6 +73,6 @@ char	**read_map(const char *filename, t_game *game)
 	}
 	if (!validate_path(game, game->player.px, game->player.py))
 		error_exit("Error\nInvalid path\n", game);
-	game->player.total_collectibles =  game->parse.collectible;
+	game->player.total_collectibles = game->parse.collectible;
 	return (game->map.map);
 }
