@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/24 19:38:14 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:35:54 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,13 @@ void	destroy_sprites(t_game *game, void *mlx)
 		mlx_destroy_image(mlx, game->sprites.floor);
 	if (game->sprites.player)
 		mlx_destroy_image(mlx, game->sprites.player);
-	if (game->sprites.collectible)
-		mlx_destroy_image(mlx, game->sprites.collectible);
+	if (game->sprites.coll1 && game->sprites.coll2 && game->sprites.coll3 && game->sprites.coll4)
+	{
+		mlx_destroy_image(mlx, game->sprites.coll1);
+		mlx_destroy_image(mlx, game->sprites.coll2);
+		mlx_destroy_image(mlx, game->sprites.coll3);
+		mlx_destroy_image(mlx, game->sprites.coll4);
+	}
 	if (game->sprites.exit)
 		mlx_destroy_image(mlx, game->sprites.exit);
 }

@@ -48,7 +48,10 @@ typedef struct s_sprites
     void *player;
     void *wall;
 	void *floor;
-    void *collectible;
+    void *coll1;
+	void *coll2;
+	void *coll3;
+	void *coll4;
     void *exit;
 }				t_sprites;
 
@@ -108,7 +111,7 @@ char	**read_map(const char *filename, t_game *game);
 // Game initialization
 void	draw_map(t_game *game, void *mlx, void *mlx_win);
 void	move_player(t_game *game, int new_x_pos, int new_y_pos);
-void	handle_keys(int keycode, t_game *game);
+int		handle_keys(int keycode, t_game *game);
 bool	all_collected(t_game *game);
 void	initialize_game(t_game *game, void *mlx, void *mlx_win);
 
