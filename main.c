@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:18:42 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/24 20:20:29 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:03:48 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 	t_game	game;
 	
 	ft_memset(&game, 0, sizeof(t_game));
+	srand(time(NULL));
 	if (ac != 2)
 		file_error_exit("Error\nInvalid number of arguments\n");
 	validate_file(av[1]);

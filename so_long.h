@@ -42,17 +42,29 @@ typedef struct s_parse
 	int		exit_game;
 }				t_parse;
 
+typedef struct s_collectible
+{
+	int		pos_x;
+	int		pos_y;
+	void	*sprite;
+}				t_collectible;
+
+typedef struct s_sprite_coll
+{
+	void *coll1;
+	void *coll2;
+	void *coll3;
+	void *coll4;
+}				t_sprite_coll;
+
 #define TILE_SIZE 32// Costante per la dimensione degli sprites
 typedef struct s_sprites
 {
     void *player;
     void *wall;
 	void *floor;
-    void *coll1;
-	void *coll2;
-	void *coll3;
-	void *coll4;
-    void *exit;
+	t_sprite_coll collectible;
+	void *exit;
 }				t_sprites;
 
 typedef struct s_window
@@ -65,15 +77,17 @@ typedef struct s_window
 
 typedef struct s_game
 {
-	t_map		map;
-	t_parse		parse;
-	t_sprites	sprites;
-	t_window	window;
-	t_player	player;
+	t_map			map;
+	t_parse			parse;
+	t_collectible	*collectibles;
+	t_sprites		sprites;
+	t_window		window;
+	t_player		player;
 	
 }				t_game;	
 
 // Utils
+void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
 void	destroy_sprites(t_game *game, void *mlx);
 void	free_resources(t_game *game);
@@ -94,7 +108,7 @@ int		validate_map(t_game *game);
 void	find_player(t_game *game);
 void	flood_fill(t_game *game, char **map, int x, int y);
 int		check_reachability(t_game *game, char **map);
-int		validate_path(t_game *game, int pos_x, int pos_y);
+int		validate_path(t_game *game);
 
 // Validate file
 int		has_ber_extension(const char *filename);
@@ -102,6 +116,13 @@ int		file_exists(const char *filename);
 int		is_folder(const char *filename);
 int		is_readable(const char *filename);
 void	validate_file(const char *filename);
+
+// Manage collectibles
+void			*get_random_coll_sprite(t_game *game);
+void			initialize_collectibles(t_game *game);
+void			init_coll_sprite(t_game *game);
+void			draw_collectibles(t_game *game);
+t_collectible	*is_collectible(t_game *game, int x, int y);
 
 // Load map
 int		count_lines(const char *filename);
