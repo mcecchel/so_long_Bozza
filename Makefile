@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/02/27 15:20:17 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/02/27 16:01:50 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ MLX_DIR		= mlx_linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 
-SRC		= 	src/game_utils.c \
+SRC		= 	src/bonus/manage_enemies.c \
+			src/game_utils.c \
 			src/manage_errors.c \
 			src/manage_collectibles.c \
 			src/validate_file.c \

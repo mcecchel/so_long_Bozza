@@ -14,11 +14,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define WALL '1'
-#define EMPTY '0'
-#define PLAYER 'P'
+#define WALL		'1'
+#define EMPTY		'0'
+#define PLAYER		'P'
+#define ENEMY		'N'
 #define COLLECTIBLE 'C'
-#define EXIT 'E'
+#define EXIT		'E'
 
 typedef struct s_map
 {
@@ -34,6 +35,14 @@ typedef struct s_player
 	int		collected_items;
 	int		total_collectibles;
 }				t_player;
+
+typedef struct s_enemy
+{
+    int px;
+    int py;
+	int enemies_count;
+    // int direction; // 1 per destra, -1 per sinistra (se si muove orizzontalmente)
+}				t_enemy;
 
 typedef struct s_parse
 {
@@ -64,6 +73,7 @@ typedef struct s_sprites
     void *wall;
 	void *floor;
 	t_sprite_coll collectible;
+	void *enemy;
 	void *exit;
 }				t_sprites;
 
@@ -83,6 +93,7 @@ typedef struct s_game
 	t_sprites		sprites;
 	t_window		window;
 	t_player		player;
+	t_enemy			enemies;
 	
 }				t_game;	
 
