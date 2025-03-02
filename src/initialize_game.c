@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/27 15:24:01 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/02 22:17:30 by marianna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	{
 		game->player.px = new_x_pos;
 		game->player.py = new_y_pos;
+		display_moves(game);
+		game->moves++;
 		collectible = is_collectible(game, new_x_pos, new_y_pos);
 		if (collectible)
 		{
@@ -55,6 +57,7 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 			collectible->pos_x = -1; // Cosi' so che e' stato collezionato
 			printf("Item collected! You have: %d of %d\n", game->player.collected_items, game->player.total_collectibles);
 		}
+		mlx_clear_window(game->window.mlx, game->window.mlx_win);
 		draw_map(game, game->window.mlx, game->window.mlx_win);
 		if (game->map.map[new_y_pos][new_x_pos] == 'E')
 		{
@@ -103,17 +106,10 @@ bool	all_collected(t_game *game)
 
 void	initialize_game(t_game *game, void *mlx, void *mlx_win)
 {
-	int		width;
-	int		height;
-
-	game->sprites.wall = mlx_xpm_file_to_image(mlx, "./textures/wall.xpm", &width, &height);
-	game->sprites.floor = mlx_xpm_file_to_image(mlx, "./textures/floor.xpm", &width, &height);
-	game->sprites.player = mlx_xpm_file_to_image(mlx, "./textures/front2.xpm", &width, &height);
-	game->sprites.exit = mlx_xpm_file_to_image(mlx, "./textures/exit.xpm", &width, &height);
-	init_coll_sprite(game);
+	
+	get_sprite(game);
+	get_coll_sprite(game);
+	get_enemy_sprite(game);
 	initialize_collectibles(game);
-	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.player || !game->sprites.collectible.coll1
-		|| !game->sprites.collectible.coll2 || !game->sprites.collectible.coll3 || !game->sprites.collectible.coll4 || !game->sprites.exit)
-		error_exit("Error\nFailed to load textures\n", game);
 	draw_map(game, mlx, mlx_win);
 }

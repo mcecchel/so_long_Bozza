@@ -42,6 +42,19 @@ typedef struct s_parse
 	int		exit_game;
 }				t_parse;
 
+typedef struct s_enemy
+{
+	int		pos_x;
+	int		pos_y;
+	void	*sprite;
+}				t_enemy;
+
+typedef struct s_sprite_enemy
+{
+	void *dx;
+	void *sx;
+}				t_sprite_enemy;
+
 typedef struct s_collectible
 {
 	int		pos_x;
@@ -60,11 +73,12 @@ typedef struct s_sprite_coll
 #define TILE_SIZE 32// Costante per la dimensione degli sprites
 typedef struct s_sprites
 {
-    void *player;
-    void *wall;
-	void *floor;
-	t_sprite_coll collectible;
-	void *exit;
+    void			*player;
+    void			*wall;
+	void			*floor;
+	t_sprite_enemy	enemy;
+	t_sprite_coll	collectible;
+	void			*exit;
 }				t_sprites;
 
 typedef struct s_window
@@ -83,10 +97,12 @@ typedef struct s_game
 	t_sprites		sprites;
 	t_window		window;
 	t_player		player;
+	int				moves;
 	
 }				t_game;	
 
 // Utils
+void    display_moves(t_game *game);
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
 void	destroy_sprites(t_game *game, void *mlx);
@@ -116,6 +132,11 @@ int		file_exists(const char *filename);
 int		is_folder(const char *filename);
 int		is_readable(const char *filename);
 void	validate_file(const char *filename);
+
+// Get sprites
+void	get_coll_sprite(t_game *game);
+void	get_enemy_sprite(t_game *game);
+void	get_sprite(t_game *game);
 
 // Manage collectibles
 void			*get_random_coll_sprite(t_game *game);

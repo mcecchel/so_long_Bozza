@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_collectibles.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:19:19 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/27 15:24:09 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:31:20 by marianna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,6 @@ void	initialize_collectibles(t_game *game)
 			}
 			j++;
 		}
-	}
-}
-
-void	init_coll_sprite(t_game *game)
-{
-	int width;
-	int height;
-
-	game->sprites.collectible.coll1 = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll1.xpm", &width, &height);
-	game->sprites.collectible.coll2 = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll2.xpm", &width, &height);
-	game->sprites.collectible.coll3 = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll3.xpm", &width, &height);
-	game->sprites.collectible.coll4 = mlx_xpm_file_to_image(game->window.mlx, "./textures/coll4.xpm", &width, &height);
-	if (!game->sprites.collectible.coll1 || !game->sprites.collectible.coll2 || !game->sprites.collectible.coll3 || !game->sprites.collectible.coll4)
-	{
-		printf("Error\nFailed to load collectible sprite\n");
-		free_resources(game);
-		exit(1);
 	}
 }
 
