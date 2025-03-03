@@ -102,7 +102,6 @@ typedef struct s_game
 }				t_game;	
 
 // Utils
-void    display_moves(t_game *game);
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
 void	destroy_sprites(t_game *game, void *mlx);
@@ -141,9 +140,9 @@ void	get_sprite(t_game *game);
 // Manage collectibles
 void			*get_random_coll_sprite(t_game *game);
 void			initialize_collectibles(t_game *game);
-void			init_coll_sprite(t_game *game);
 void			draw_collectibles(t_game *game);
 t_collectible	*is_collectible(t_game *game, int x, int y);
+bool			all_collected(t_game *game);
 
 // Load map
 int		count_lines(const char *filename);
@@ -154,7 +153,6 @@ char	**read_map(const char *filename, t_game *game);
 void	draw_map(t_game *game, void *mlx, void *mlx_win);
 void	move_player(t_game *game, int new_x_pos, int new_y_pos);
 int		handle_keys(int keycode, t_game *game);
-bool	all_collected(t_game *game);
 void	initialize_game(t_game *game, void *mlx, void *mlx_win);
 
 int	main(int ac, char **av);

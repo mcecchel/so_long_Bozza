@@ -6,27 +6,11 @@
 /*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/02 22:22:49 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:53:49 by marianna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	display_moves(t_game *game)
-{
-	char *moves;
-
-	moves = ft_itoa(game->moves);
-	if (!moves)
-	{
-		printf("Errore: ft_itoa ha restituito NULL\n");
-		return ;
-	}
-	printf("Displaying moves: %s\n", moves);
-	mlx_string_put(game->window.mlx, game->window.mlx_win, 10, 10, 0xFFFFFF, "Moves:");
-	mlx_string_put(game->window.mlx, game->window.mlx_win, 70, 10, 0xFFFFFF, moves);
-	free(moves);
-}
 
 // Map utils
 void	print_matrix(char **matrix)

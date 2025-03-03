@@ -6,7 +6,7 @@
 /*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:19:19 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/02 19:31:20 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:56:52 by marianna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,12 @@ t_collectible *is_collectible(t_game *game, int x, int y)
 	}
 	return (NULL);
 }
+
+
+bool	all_collected(t_game *game)
+{
+	if (game->player.collected_items == game->player.total_collectibles)
+		return (true);
+	return (false);
+}
+

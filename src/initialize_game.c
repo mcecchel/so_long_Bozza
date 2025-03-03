@@ -6,7 +6,7 @@
 /*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/02 22:17:30 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:59:08 by marianna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	{
 		game->player.px = new_x_pos;
 		game->player.py = new_y_pos;
-		display_moves(game);
-		game->moves++;
 		collectible = is_collectible(game, new_x_pos, new_y_pos);
 		if (collectible)
 		{
@@ -70,6 +68,8 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 				exit(0);
 			}
 		}
+		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 	}
 }
 
@@ -95,13 +95,6 @@ int	handle_keys(int keycode, t_game *game)
 		new_x_pos += 1;
 	move_player(game, new_x_pos, new_y_pos);
 	return (0);
-}
-
-bool	all_collected(t_game *game)
-{
-	if (game->player.collected_items == game->player.total_collectibles)
-		return (true);
-	return (false);
 }
 
 void	initialize_game(t_game *game, void *mlx, void *mlx_win)
