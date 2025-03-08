@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_sprites.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:46:33 by marianna          #+#    #+#             */
-/*   Updated: 2025/03/02 19:26:04 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:48:59 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 	int width;
 	int height;
 
-	game->sprites.player->front = mlx_xpm_file_to_image(game->window.mlx, "./textures/front2.xpm", &width, &height);
-	game->sprites.player->back = mlx_xpm_file_to_image(game->window.mlx, "./textures/back2.xpm", &width, &height);
-	game->sprites.player->right = mlx_xpm_file_to_image(game->window.mlx, "./textures/side1.1.xpm", &width, &height);
-	game->sprites.player->left = mlx_xpm_file_to_image(game->window.mlx, "./textures/side2.1.xpm", &width, &height);
+	game->sprites.player->front = mlx_xpm_file_to_image(game->window.mlx, "./textures/front.xpm", &width, &height);
+	game->sprites.player->back = mlx_xpm_file_to_image(game->window.mlx, "./textures/back.xpm", &width, &height);
+	game->sprites.player->right = mlx_xpm_file_to_image(game->window.mlx, "./textures/right.xpm", &width, &height);
+	game->sprites.player->left = mlx_xpm_file_to_image(game->window.mlx, "./textures/left.xpm", &width, &height);
 	if (!game->sprites.player->front || !game->sprites.player->back || !game->sprites.player->right || !game->sprites.player->left)
 	{
 		printf("Error\nFailed to load player sprite\n");

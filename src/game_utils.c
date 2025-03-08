@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/03 15:53:49 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:20:13 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	destroy_sprites(t_game *game, void *mlx)
 		mlx_destroy_image(mlx, game->sprites.collectible.coll3);
 	if (game->sprites.collectible.coll4)
 		mlx_destroy_image(mlx, game->sprites.collectible.coll4);
+	if (game->sprites.enemy.dx)
+		mlx_destroy_image(mlx, game->sprites.enemy.dx);
+	if (game->sprites.enemy.sx)
+		mlx_destroy_image(mlx, game->sprites.enemy.sx);
 	if (game->sprites.exit)
 		mlx_destroy_image(mlx, game->sprites.exit);
 }
@@ -66,6 +70,7 @@ void	free_resources(t_game *game)
 	mlx_destroy_window(game->window.mlx, game->window.mlx_win);
 	mlx_destroy_display(game->window.mlx);
 	free(game->collectibles);
+	free(game->enemies);
 	free(game->window.mlx);
 }
 

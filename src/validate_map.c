@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:57:35 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/24 20:05:00 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:01:19 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	count_map_elements(t_game *game)
 			}
 			else if (game->map.map[i][j] == 'C')
 				game->parse.collectible++;
+			else if (game->map.map[i][j] == 'N')
+				game->player.total_enemies++;
 			else if (game->map.map[i][j] == 'E')
 				game->parse.exit_game++;
 			else if (game->map.map[i][j] != '1' && game->map.map[i][j] != '0')

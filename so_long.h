@@ -33,6 +33,7 @@ typedef struct s_player
 	int		py;
 	int		collected_items;
 	int		total_collectibles;
+	int		total_enemies;
 }				t_player;
 
 typedef struct s_parse
@@ -97,6 +98,7 @@ typedef struct s_game
 	t_sprites		sprites;
 	t_window		window;
 	t_player		player;
+	t_enemy			*enemies;
 	int				moves;
 	
 }				t_game;	
@@ -144,16 +146,22 @@ void			draw_collectibles(t_game *game);
 t_collectible	*is_collectible(t_game *game, int x, int y);
 bool			all_collected(t_game *game);
 
+// Manage enemies
+void			*get_random_enemy_sprite(t_game *game);
+void			initialize_enemies(t_game *game);
+void			draw_enemies(t_game *game);
+t_enemy			*is_enemy(t_game *game, int x, int y);
+
 // Load map
-int		count_lines(const char *filename);
-char	**load_map(const char *filename, t_game *game);
-char	**read_map(const char *filename, t_game *game);
+int				count_lines(const char *filename);
+char			**load_map(const char *filename, t_game *game);
+char			**read_map(const char *filename, t_game *game);
 
 // Game initialization
-void	draw_map(t_game *game, void *mlx, void *mlx_win);
-void	move_player(t_game *game, int new_x_pos, int new_y_pos);
-int		handle_keys(int keycode, t_game *game);
-void	initialize_game(t_game *game, void *mlx, void *mlx_win);
+void			draw_map(t_game *game, void *mlx, void *mlx_win);
+void			move_player(t_game *game, int new_x_pos, int new_y_pos);
+int				handle_keys(int keycode, t_game *game);
+void			initialize_game(t_game *game, void *mlx, void *mlx_win);
 
 int	main(int ac, char **av);
 

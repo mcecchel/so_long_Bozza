@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/03 15:59:08 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:19:19 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ void	draw_map(t_game *game, void *mlx, void *mlx_win)
 	draw_collectibles(game);
 	mlx_put_image_to_window(mlx, mlx_win, game->sprites.player,
 		game->player.px * TILE_SIZE, game->player.py * TILE_SIZE);
+	draw_enemies(game);
 }
 
 void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 {
 	t_collectible	*collectible;
+	t_enemy			*enemy;
 	
 	if (new_y_pos >= 0 && new_y_pos < game->map.rows && new_x_pos >= 0
 		&& new_x_pos < game->map.columns && game->map.map[new_y_pos][new_x_pos] != '1')
@@ -55,7 +57,13 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 			collectible->pos_x = -1; // Cosi' so che e' stato collezionato
 			printf("Item collected! You have: %d of %d\n", game->player.collected_items, game->player.total_collectibles);
 		}
-		mlx_clear_window(game->window.mlx, game->window.mlx_win);
+		enemy = is_enemy(game, new_x_pos, new_y_pos);
+		if (enemy)
+		{
+			printf("Seems you have been caught by an enemy, AHAH.(read with Nelson voice)\a\n");
+			free_resources(game);
+			exit(0);
+		}
 		draw_map(game, game->window.mlx, game->window.mlx_win);
 		if (game->map.map[new_y_pos][new_x_pos] == 'E')
 		{
@@ -93,7 +101,8 @@ int	handle_keys(int keycode, t_game *game)
 		new_x_pos -= 1;
 	else if (keycode == XK_Right)
 		new_x_pos += 1;
-	move_player(game, new_x_pos, new_y_pos);
+	if (keycode == XK_Up || keycode == XK_Down || keycode == XK_Left || keycode == XK_Right)
+		move_player(game, new_x_pos, new_y_pos);
 	return (0);
 }
 
@@ -104,5 +113,6 @@ void	initialize_game(t_game *game, void *mlx, void *mlx_win)
 	get_coll_sprite(game);
 	get_enemy_sprite(game);
 	initialize_collectibles(game);
+	initialize_enemies(game);
 	draw_map(game, mlx, mlx_win);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marianna <marianna@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/03/02 19:28:03 by marianna         ###   ########.fr        #
+#    Updated: 2025/03/08 16:09:32 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 SRC		= 	src/game_utils.c \
 			src/manage_errors.c \
 			src/manage_collectibles.c \
+			src/manage_enemies.c \
 			src/validate_file.c \
 			src/validate_map.c \
 			src/validate_path.c \
