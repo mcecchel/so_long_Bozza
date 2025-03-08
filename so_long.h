@@ -153,6 +153,8 @@ void			*get_random_enemy_sprite(t_game *game);
 void			initialize_enemies(t_game *game);
 void			draw_enemies(t_game *game);
 t_enemy			*is_enemy(t_game *game, int x, int y);
+void			move_all_enemies(t_game *game);
+void			move_enemy(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos);
 
 // Load map
 int				count_lines(const char *filename);

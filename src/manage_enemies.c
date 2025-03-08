@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:52:43 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/08 16:04:23 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/08 17:19:47 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,59 @@ t_enemy	*is_enemy(t_game *game, int x, int y)
 		i++;
 	}
 	return (NULL);
+}
+
+void	move_all_enemies(t_game *game)
+{
+	int	new_x_pos;
+	int	new_y_pos;
+	int i;
+	
+	i = 0;
+	while (i < game->player.total_enemies)
+	{
+		new_x_pos = game->enemies[i].pos_x;
+		new_y_pos = game->enemies[i].pos_y;
+		if (rand() % 2 == 0)
+		{
+			// Move horizontally
+			if (rand() % 2 == 0)
+			{
+				game->enemies[i].sprite = game->sprites.enemy.sx;
+				new_x_pos--;
+			}
+			else
+			{
+				game->enemies[i].sprite = game->sprites.enemy.dx;
+				new_x_pos++;
+			}
+		}
+		else
+		{
+			// Move vertically
+			if (rand() % 2 == 0)
+			{
+				// Move up
+				new_y_pos--;
+			}
+			else
+			{
+				// Move down
+				new_y_pos++;
+			}
+		}
+		move_enemy(game, &game->enemies[i], new_x_pos, new_y_pos);
+		i++;
+	}
+}
+
+void	move_enemy(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos)
+{
+	if (new_y_pos >= 0 && new_y_pos < game->map.rows && new_x_pos >= 0
+		&& new_x_pos < game->map.columns && game->map.map[new_y_pos][new_x_pos] != '1'
+		&& !is_enemy(game, new_x_pos, new_y_pos))
+	{
+		enemy->pos_x = new_x_pos;
+		enemy->pos_y = new_y_pos;
+	}
 }

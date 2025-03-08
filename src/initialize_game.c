@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/08 16:56:09 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/08 17:17:55 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 	{
 		game->player.px = new_x_pos;
 		game->player.py = new_y_pos;
+		move_all_enemies(game);
 		collectible = is_collectible(game, new_x_pos, new_y_pos);
 		if (collectible)
 		{
