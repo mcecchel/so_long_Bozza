@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:46:33 by marianna          #+#    #+#             */
-/*   Updated: 2025/03/08 15:48:59 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:48:05 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	get_sprite(t_game *game)
 	game->sprites.floor = mlx_xpm_file_to_image(game->window.mlx, "./textures/floor.xpm", &width, &height);
 	game->sprites.exit = mlx_xpm_file_to_image(game->window.mlx, "./textures/exit.xpm", &width, &height);
 	game->sprites.player = mlx_xpm_file_to_image(game->window.mlx, "./textures/front.xpm", &width, &height);
-	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.exit || !game->sprites.player)
+	game->sprites.moves_background = mlx_xpm_file_to_image(game->window.mlx, "./textures/sus.xpm", &width, &height);
+	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.exit || !game->sprites.player || !game->sprites.moves_background)
 	{
 		printf("Error\nFailed to load textures\n");
 		free_resources(game);

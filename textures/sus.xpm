@@ -1,0 +1,36 @@
+/* XPM */
+static char *result[] = {
+/* columns rows colors chars-per-pixel */
+"75 15 15 1 ",
+"  c #EFEFEF",
+". c gray98",
+"X c white",
+"o c #F4F4F4",
+"O c #F1F1F1",
+"+ c #F6F6F6",
+"@ c #F3F3F3",
+"# c #FBFBFB",
+"$ c #EEEBF1",
+"% c #F8F8F8",
+"& c gray94",
+"* c #EFEEEF",
+"= c gray95",
+"- c #EDE2F4",
+"; c #FDFDFD",
+/* pixels */
+"     .XXo oXXXXXX      .XXXo  oX     .XXo oXXXXXX      .XXXo  oX     .XXo o",
+"  ooO .+  XXXXXXXX @#X#O   @oo@   ooO .+  XXXXXXXX @#X#O   @oo@   ooO .+  X",
+"$@XX%oooO XXXXXXXX .XXX%O O#XX#& @XX%oooO XXXXXXXX .XXX%O O#XX#o*=XX%oooO X",
+"-.XXXXXX# %XXXXXXo @#XXXo oXXXXO .XXXXXX# %XXXXXXo @#XXXo oXXXXX .XXXXXX# %",
+" .XXXXXXX    XXXo     Xo  oXXXX@ .XXXXXXX    XXXo     Xo  oXXXXo .XXXXXXX  ",
+"oo@.;X+   oooo@ @XXX%  @oo@ +.+ oo@.;X+   oooo@ @XXX%  @oo@ +.+ oo@.;X+   o",
+"XX+ @o   .XXXX;@.XXXX @;XX;@  @.XX+ @o   .XXXX;@.XXXX @;XX;@  @.XX+ @o   .X",
+"XX;+ ++ +XXXXX#O@XXX% oXXXX#.@#XXX;+ ++ +XXXXX#O@XXX% oXXXX#.@#XXX;+ ++ +XX",
+"XXX..X.  XXXX         oXXXXXXoXXXXX..X.  XXXX         oXXXXXXoXXXXX..X.  XX",
+"..  +. Oo     %XXX#O   +....@@#X..  +. Oo     %XXX#O   +....@@#X..  +. Oo  ",
+"+..+  @#X.   .XXXXX#@  +.  +. Oo+..+  @#X.   .XXXXX#@  +.  +. Oo+..+  @#X. ",
+";XX;@ #XXX  +XXXXXXXo @;X+@;X+  ;XX;@ #XXX  +XXXXXXXo @;X+@;X+  ;XX;@ #XXX ",
+"XXXXo oXX   .XXXXXXo X .X oXX.  XXXXo oXX   .XXXXXXo X .X oXX.  XXXXo oXX  ",
+" +.+ @ooo   +.XXXX+ .X+    +. OO +.+ @ooo   +.XXXX+ .X+    +. OO +.+ @ooo  ",
+"    +;XXX.  +.oooo  @o@..    @##    +;XXX.  +.oooo  @o@..    @##    +;XXX. "
+};

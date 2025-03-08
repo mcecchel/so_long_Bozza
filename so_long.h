@@ -77,8 +77,9 @@ typedef struct s_sprites
     void			*player;
     void			*wall;
 	void			*floor;
-	t_sprite_enemy	enemy;
 	t_sprite_coll	collectible;
+	t_sprite_enemy	enemy;
+	void			*moves_background;
 	void			*exit;
 }				t_sprites;
 
@@ -104,6 +105,7 @@ typedef struct s_game
 }				t_game;	
 
 // Utils
+void	show_moves(t_game *game);
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
 void	destroy_sprites(t_game *game, void *mlx);

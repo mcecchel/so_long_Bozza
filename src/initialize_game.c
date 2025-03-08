@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/08 16:19:19 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:56:09 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	draw_map(t_game *game, void *mlx, void *mlx_win)
 	mlx_put_image_to_window(mlx, mlx_win, game->sprites.player,
 		game->player.px * TILE_SIZE, game->player.py * TILE_SIZE);
 	draw_enemies(game);
+	show_moves(game);
 }
 
 void	move_player(t_game *game, int new_x_pos, int new_y_pos)
@@ -64,6 +65,8 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 			free_resources(game);
 			exit(0);
 		}
+		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
 		draw_map(game, game->window.mlx, game->window.mlx_win);
 		if (game->map.map[new_y_pos][new_x_pos] == 'E')
 		{
@@ -76,8 +79,6 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 				exit(0);
 			}
 		}
-		game->moves++;
-		ft_printf("Moves: %d\n", game->moves);
 	}
 }
 
