@@ -31,6 +31,7 @@ typedef struct s_player
 {
 	int		px;
 	int		py;
+	void	*sprite;
 	int		collected_items;
 	int		total_collectibles;
 	int		total_enemies;
@@ -71,10 +72,18 @@ typedef struct s_sprite_coll
 	void *coll4;
 }				t_sprite_coll;
 
+typedef struct s_sprite_player
+{
+	void *front;
+	void *back;
+	void *right;
+	void *left;
+}				t_sprite_player;
+
 #define TILE_SIZE 32// Costante per la dimensione degli sprites
 typedef struct s_sprites
 {
-    void			*player;
+    t_sprite_player	player;
     void			*wall;
 	void			*floor;
 	t_sprite_coll	collectible;
@@ -105,7 +114,6 @@ typedef struct s_game
 }				t_game;	
 
 // Utils
-void	show_moves(t_game *game);
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
 void	destroy_sprites(t_game *game, void *mlx);
@@ -119,7 +127,7 @@ void	file_error_exit(const char *message);
 // Check map validity
 int		is_rectangular(t_game *game);
 int		check_map_borders(t_game *game);
-void	count_map_elements(t_game *game);
+void	count_map_elements(t_game *game, int i, int j);
 int		check_map_elements(t_game *game);
 int		validate_map(t_game *game);
 
@@ -137,9 +145,10 @@ int		is_readable(const char *filename);
 void	validate_file(const char *filename);
 
 // Get sprites
+void	get_player_sprite(t_game *game);
 void	get_coll_sprite(t_game *game);
 void	get_enemy_sprite(t_game *game);
-void	get_sprite(t_game *game);
+void	get_other_sprite(t_game *game);
 
 // Manage collectibles
 void			*get_random_coll_sprite(t_game *game);
@@ -166,6 +175,10 @@ void			draw_map(t_game *game, void *mlx, void *mlx_win);
 void			move_player(t_game *game, int new_x_pos, int new_y_pos);
 int				handle_keys(int keycode, t_game *game);
 void			initialize_game(t_game *game, void *mlx, void *mlx_win);
+
+// Move player
+void	show_moves(t_game *game);
+void	move_player(t_game *game, int new_x_pos, int new_y_pos);
 
 int	main(int ac, char **av);
 

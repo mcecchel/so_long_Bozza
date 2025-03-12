@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/03/08 16:09:32 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/03/12 17:56:55 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,9 @@ SRC		= 	src/game_utils.c \
 			src/validate_path.c \
 			src/get_sprites.c \
 			src/load_map.c \
+			src/moves.c \
 			src/initialize_game.c \
 			main.c
-
-OBJS = $(SRC:.c=.o)
 
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
@@ -47,9 +46,9 @@ $(MLX_LIB):
 	@echo "🔧 Compilando MiniLibX..."
 	$(MAKE) -C $(MLX_DIR)
 
-$(NAME): $(OBJS)
+$(NAME): $(SRC)
 	@echo "🚀 Creando $(NAME)..."
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT_LIB) -lm
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(MLX_FLAGS) $(LIBFT_LIB) -lm
 	$(MAKE) kira
 
 %.o: %.c
@@ -57,7 +56,6 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
 	$(MAKE) clean -C $(LIBFT_DIR)
 	$(MAKE) clean -C $(MLX_DIR)
 

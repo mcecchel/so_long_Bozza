@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianna <marianna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:59:00 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/02 18:57:44 by marianna         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:02:03 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	validate_path(t_game *game)
 		i++;
 	}
 	flood_fill(game, map_copy, game->player.px, game->player.py);
-	//print_matrix(map_copy);
 	reached = check_reachability(game, map_copy);
 	free_matrix(map_copy);
 	return (reached);

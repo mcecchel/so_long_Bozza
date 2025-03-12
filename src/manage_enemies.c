@@ -6,10 +6,9 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:52:43 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/08 17:19:47 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:04:58 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "so_long.h"
 
@@ -63,10 +62,12 @@ void	draw_enemies(t_game *game)
 	{
 		enemy = game->enemies[i];
 		if (enemy.sprite)
-			mlx_put_image_to_window(game->window.mlx, game->window.mlx_win, enemy.sprite, enemy.pos_x * TILE_SIZE, enemy.pos_y * TILE_SIZE);
+			mlx_put_image_to_window(game->window.mlx, game->window.mlx_win,
+				enemy.sprite, enemy.pos_x * TILE_SIZE, enemy.pos_y * TILE_SIZE);
 		i++;
 	}
 }
+
 t_enemy	*is_enemy(t_game *game, int x, int y)
 {
 	int	i;
@@ -85,8 +86,8 @@ void	move_all_enemies(t_game *game)
 {
 	int	new_x_pos;
 	int	new_y_pos;
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < game->player.total_enemies)
 	{
@@ -94,7 +95,6 @@ void	move_all_enemies(t_game *game)
 		new_y_pos = game->enemies[i].pos_y;
 		if (rand() % 2 == 0)
 		{
-			// Move horizontally
 			if (rand() % 2 == 0)
 			{
 				game->enemies[i].sprite = game->sprites.enemy.sx;
@@ -108,17 +108,10 @@ void	move_all_enemies(t_game *game)
 		}
 		else
 		{
-			// Move vertically
 			if (rand() % 2 == 0)
-			{
-				// Move up
-				new_y_pos--;
-			}
+				new_y_pos--;// Move up
 			else
-			{
-				// Move down
-				new_y_pos++;
-			}
+				new_y_pos++;// Move down
 		}
 		move_enemy(game, &game->enemies[i], new_x_pos, new_y_pos);
 		i++;

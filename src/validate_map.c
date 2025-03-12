@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:57:35 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/08 16:01:19 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:59:54 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,8 @@ int	check_map_borders(t_game *game)
 	return (1);
 }
 
-void	count_map_elements(t_game *game)
+void	count_map_elements(t_game *game, int i, int j)
 {
-	int	i;
-	int	j;
-
 	i = 0;
 	while (i < game->map.rows)
 	{
@@ -86,7 +83,7 @@ void	count_map_elements(t_game *game)
 
 int	check_map_elements(t_game *game)
 {
-	count_map_elements(game);
+	count_map_elements(game, 0, 0);
 	if (game->parse.player != 1 || game->parse.exit_game != 1
 		|| game->parse.collectible < 1)
 	{

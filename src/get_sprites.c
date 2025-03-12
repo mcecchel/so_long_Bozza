@@ -6,28 +6,28 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:46:33 by marianna          #+#    #+#             */
-/*   Updated: 2025/03/08 16:48:05 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:54:29 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	get_player_sprite(t_game *game)
+void	get_player_sprite(t_game *game)
 {
 	int width;
 	int height;
 
-	game->sprites.player->front = mlx_xpm_file_to_image(game->window.mlx, "./textures/front.xpm", &width, &height);
-	game->sprites.player->back = mlx_xpm_file_to_image(game->window.mlx, "./textures/back.xpm", &width, &height);
-	game->sprites.player->right = mlx_xpm_file_to_image(game->window.mlx, "./textures/right.xpm", &width, &height);
-	game->sprites.player->left = mlx_xpm_file_to_image(game->window.mlx, "./textures/left.xpm", &width, &height);
-	if (!game->sprites.player->front || !game->sprites.player->back || !game->sprites.player->right || !game->sprites.player->left)
+	game->sprites.player.front = mlx_xpm_file_to_image(game->window.mlx, "./textures/front.xpm", &width, &height);
+	game->sprites.player.back = mlx_xpm_file_to_image(game->window.mlx, "./textures/back.xpm", &width, &height);
+	game->sprites.player.right = mlx_xpm_file_to_image(game->window.mlx, "./textures/right.xpm", &width, &height);
+	game->sprites.player.left = mlx_xpm_file_to_image(game->window.mlx, "./textures/left.xpm", &width, &height);
+	if (!game->sprites.player.front || !game->sprites.player.back || !game->sprites.player.right || !game->sprites.player.left)
 	{
 		printf("Error\nFailed to load player sprite\n");
 		free_resources(game);
 		exit(1);
 	}
-} */
+}
 
 void	get_coll_sprite(t_game *game)
 {
@@ -61,7 +61,7 @@ void	get_enemy_sprite(t_game *game)
 	}
 }
 
-void	get_sprite(t_game *game)
+void	get_other_sprite(t_game *game)
 {
 	int width;
 	int height;
@@ -69,9 +69,9 @@ void	get_sprite(t_game *game)
 	game->sprites.wall = mlx_xpm_file_to_image(game->window.mlx, "./textures/wall.xpm", &width, &height);
 	game->sprites.floor = mlx_xpm_file_to_image(game->window.mlx, "./textures/floor.xpm", &width, &height);
 	game->sprites.exit = mlx_xpm_file_to_image(game->window.mlx, "./textures/exit.xpm", &width, &height);
-	game->sprites.player = mlx_xpm_file_to_image(game->window.mlx, "./textures/front.xpm", &width, &height);
+	// player sprites
 	game->sprites.moves_background = mlx_xpm_file_to_image(game->window.mlx, "./textures/sus.xpm", &width, &height);
-	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.exit || !game->sprites.player || !game->sprites.moves_background)
+	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.exit || !game->sprites.moves_background)
 	{
 		printf("Error\nFailed to load textures\n");
 		free_resources(game);
