@@ -116,9 +116,6 @@ typedef struct s_game
 // Utils
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
-void	destroy_sprites(t_game *game, void *mlx);
-void	free_resources(t_game *game);
-int		close_game(t_game *game);
 
 // Manage errors
 void	error_exit(const char *message, t_game *game);
@@ -144,6 +141,10 @@ int		is_folder(const char *filename);
 int		is_readable(const char *filename);
 void	validate_file(const char *filename);
 
+// Randomize sprites
+void	*get_random_coll_sprite(t_game *game);
+void	*get_random_enemy_sprite(t_game *game);
+
 // Get sprites
 void	get_player_sprite(t_game *game);
 void	get_coll_sprite(t_game *game);
@@ -151,19 +152,16 @@ void	get_enemy_sprite(t_game *game);
 void	get_other_sprite(t_game *game);
 
 // Manage collectibles
-void			*get_random_coll_sprite(t_game *game);
 void			initialize_collectibles(t_game *game);
 void			draw_collectibles(t_game *game);
 t_collectible	*is_collectible(t_game *game, int x, int y);
 bool			all_collected(t_game *game);
 
 // Manage enemies
-void			*get_random_enemy_sprite(t_game *game);
 void			initialize_enemies(t_game *game);
 void			draw_enemies(t_game *game);
-t_enemy			*is_enemy(t_game *game, int x, int y);
+void			move_enemy_if_possible(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos);
 void			move_all_enemies(t_game *game);
-void			move_enemy(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos);
 
 // Load map
 int				count_lines(const char *filename);
@@ -177,8 +175,16 @@ int				handle_keys(int keycode, t_game *game);
 void			initialize_game(t_game *game, void *mlx, void *mlx_win);
 
 // Move player
-void	show_moves(t_game *game);
-void	move_player(t_game *game, int new_x_pos, int new_y_pos);
+void		show_moves(t_game *game);
+t_enemy		*is_enemy(t_game *game, int x, int y);
+void		move_player(t_game *game, int new_x_pos, int new_y_pos);
+
+// Close game
+void	destroy_char_sprites(t_game *game, void *mlx);
+void	destroy_static_sprites(t_game *game, void *mlx);
+void	destroy_sprites(t_game *game, void *mlx);
+void	free_resources(t_game *game);
+int		close_game(t_game *game);
 
 int	main(int ac, char **av);
 

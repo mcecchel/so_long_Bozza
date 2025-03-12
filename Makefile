@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/03/12 17:56:55 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/03/12 19:24:15 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,12 @@ SRC		= 	src/game_utils.c \
 			src/validate_file.c \
 			src/validate_map.c \
 			src/validate_path.c \
+			src/randomize_sprites.c \
 			src/get_sprites.c \
 			src/load_map.c \
 			src/moves.c \
 			src/initialize_game.c \
+			src/close_game.c \
 			main.c
 
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)

@@ -6,12 +6,11 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/12 17:57:20 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:00:33 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	handle_keys(int keycode, t_game *game)
 {
@@ -31,20 +30,20 @@ int	handle_keys(int keycode, t_game *game)
 		game->player.sprite = game->sprites.player.back;
 	}
 	else if (keycode == XK_Down)
-		{
-			new_y_pos += 1;
-			game->player.sprite = game->sprites.player.front;
-		}
+	{
+		new_y_pos += 1;
+		game->player.sprite = game->sprites.player.front;
+	}
 	else if (keycode == XK_Left)
-		{
-			new_x_pos -= 1;
-			game->player.sprite = game->sprites.player.left;
-		}
+	{
+		new_x_pos -= 1;
+		game->player.sprite = game->sprites.player.left;
+	}
 	else if (keycode == XK_Right)
-		{
-			new_x_pos += 1;
-			game->player.sprite = game->sprites.player.right;
-		}
+	{
+		new_x_pos += 1;
+		game->player.sprite = game->sprites.player.right;
+	}
 	if (keycode == XK_Up || keycode == XK_Down || keycode == XK_Left
 		|| keycode == XK_Right)
 	{
@@ -81,7 +80,6 @@ void	draw_map(t_game *game, void *mlx, void *mlx_win)
 	draw_collectibles(game);
 	mlx_put_image_to_window(mlx, mlx_win, game->player.sprite,
 		game->player.px * TILE_SIZE, game->player.py * TILE_SIZE);
-	
 	draw_enemies(game);
 	show_moves(game);
 }

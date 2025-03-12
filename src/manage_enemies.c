@@ -6,22 +6,11 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:52:43 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/09 18:04:58 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:42:00 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	*get_random_enemy_sprite(t_game *game)
-{
-	int	random_sprite;
-
-	random_sprite = rand() % 2;
-	if (random_sprite == 0)
-		return (game->sprites.enemy.dx);
-	else
-		return (game->sprites.enemy.sx);
-}
 
 void	initialize_enemies(t_game *game)
 {
@@ -82,6 +71,18 @@ t_enemy	*is_enemy(t_game *game, int x, int y)
 	return (NULL);
 }
 
+void	move_enemy(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos)
+{
+	if (new_y_pos >= 0 && new_y_pos < game->map.rows && new_x_pos >= 0
+		&& new_x_pos < game->map.columns
+		&& game->map.map[new_y_pos][new_x_pos] != '1'
+		&& !is_enemy(game, new_x_pos, new_y_pos))
+	{
+		enemy->pos_x = new_x_pos;
+		enemy->pos_y = new_y_pos;
+	}
+}
+
 void	move_all_enemies(t_game *game)
 {
 	int	new_x_pos;
@@ -109,22 +110,11 @@ void	move_all_enemies(t_game *game)
 		else
 		{
 			if (rand() % 2 == 0)
-				new_y_pos--;// Move up
+				new_y_pos--;
 			else
-				new_y_pos++;// Move down
+				new_y_pos++;
 		}
 		move_enemy(game, &game->enemies[i], new_x_pos, new_y_pos);
 		i++;
-	}
-}
-
-void	move_enemy(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos)
-{
-	if (new_y_pos >= 0 && new_y_pos < game->map.rows && new_x_pos >= 0
-		&& new_x_pos < game->map.columns && game->map.map[new_y_pos][new_x_pos] != '1'
-		&& !is_enemy(game, new_x_pos, new_y_pos))
-	{
-		enemy->pos_x = new_x_pos;
-		enemy->pos_y = new_y_pos;
 	}
 }
