@@ -20,6 +20,7 @@
 #define COLLECTIBLE 'C'
 #define EXIT 'E'
 
+/*----------------------------------------------------------------------------*/
 typedef struct s_map
 {
 	char	**map;
@@ -112,6 +113,7 @@ typedef struct s_game
 	int				moves;
 	
 }				t_game;	
+/*----------------------------------------------------------------------------*/
 
 // Utils
 void	print_matrix(char **matrix);
@@ -152,15 +154,17 @@ void	get_enemy_sprite(t_game *game);
 void	get_other_sprite(t_game *game);
 
 // Manage collectibles
+void			init_single_collectible(t_game *game, int i, int j, int *coll_index);
 void			initialize_collectibles(t_game *game);
-void			draw_collectibles(t_game *game);
 t_collectible	*is_collectible(t_game *game, int x, int y);
 bool			all_collected(t_game *game);
 
+
 // Manage enemies
 void			initialize_enemies(t_game *game);
-void			draw_enemies(t_game *game);
-void			move_enemy_if_possible(t_game *game, t_enemy *enemy, int new_x_pos, int new_y_pos);
+t_enemy			*is_enemy(t_game *game, int x, int y);
+void			determine_new_position(t_game *game, t_enemy *enemy, int *new_x_pos, int *new_y_pos);
+void			move_enemy(t_game *game, t_enemy *enemy);
 void			move_all_enemies(t_game *game);
 
 // Load map
@@ -168,16 +172,24 @@ int				count_lines(const char *filename);
 char			**load_map(const char *filename, t_game *game);
 char			**read_map(const char *filename, t_game *game);
 
+// Draw elements
+void	draw_tile(t_game *game, int i, int j);
+void	draw_player(t_game *game, void *mlx, void *mlx_win);
+void	draw_map(t_game *game, void *mlx, void *mlx_win);
+void	draw_collectibles(t_game *game);
+void	draw_enemies(t_game *game);
+
 // Game initialization
-void			draw_map(t_game *game, void *mlx, void *mlx_win);
-void			move_player(t_game *game, int new_x_pos, int new_y_pos);
-int				handle_keys(int keycode, t_game *game);
-void			initialize_game(t_game *game, void *mlx, void *mlx_win);
+void	handle_movement(int keycode, t_game *game, int *new_x_pos, int *new_y_pos);
+void	update_player_position(t_game *game, int new_x_pos, int new_y_pos);
+int		handle_keys(int keycode, t_game *game);
+void	initialize_game(t_game *game, void *mlx, void *mlx_win);
 
 // Move player
-void		show_moves(t_game *game);
-t_enemy		*is_enemy(t_game *game, int x, int y);
-void		move_player(t_game *game, int new_x_pos, int new_y_pos);
+void	show_moves(t_game *game);
+void	handle_collectibles(t_game *game, int new_x_pos, int new_y_pos);
+void	handle_enemies(t_game *game, int new_x_pos, int new_y_pos);
+void	move_player(t_game *game, int new_x_pos, int new_y_pos);
 
 // Close game
 void	destroy_char_sprites(t_game *game, void *mlx);

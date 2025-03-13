@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:19:19 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/12 19:26:05 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:07:31 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ void	initialize_collectibles(t_game *game)
 				init_single_collectible(game, i, j, &coll_index);
 			j++;
 		}
-	}
-}
-
-void	draw_collectibles(t_game *game)
-{
-	int				i;
-	t_collectible	coll;
-
-	i = 0;
-	while (i < game->player.total_collectibles)
-	{
-		coll = game->collectibles[i];
-		if (coll.sprite)
-			mlx_put_image_to_window(game->window.mlx, game->window.mlx_win,
-				coll.sprite, coll.pos_x * TILE_SIZE, coll.pos_y * TILE_SIZE);
-		i++;
 	}
 }
 

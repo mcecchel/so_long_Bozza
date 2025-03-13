@@ -6,13 +6,12 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:21:44 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/12 18:08:34 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:56:12 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Map utils
 void	print_matrix(char **matrix)
 {
 	int	i;

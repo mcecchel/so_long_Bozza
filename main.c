@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:18:42 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/27 15:03:48 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:54:12 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_game	game;
-	
+
 	ft_memset(&game, 0, sizeof(t_game));
 	srand(time(NULL));
 	if (ac != 2)
@@ -28,12 +28,14 @@ int	main(int ac, char **av)
 	game.window.mlx = mlx_init();
 	if (!game.window.mlx)
 		error_exit("Error\nFailed to initialize mlx\n", &game);
-	game.window.mlx_win = mlx_new_window(game.window.mlx, game.map.columns * TILE_SIZE, game.map.rows * TILE_SIZE, "so_long");
+	game.window.mlx_win = mlx_new_window(game.window.mlx, game.map.columns
+			* TILE_SIZE, game.map.rows * TILE_SIZE, "so_long");
 	if (!game.window.mlx_win)
 		error_exit("Error\nFailed to create window\n", &game);
 	initialize_game(&game, game.window.mlx, game.window.mlx_win);
 	mlx_hook(game.window.mlx_win, KeyPress, KeyPressMask, handle_keys, &game);
-	mlx_hook(game.window.mlx_win, DestroyNotify, StructureNotifyMask, close_game, &game);
+	mlx_hook(game.window.mlx_win, DestroyNotify, StructureNotifyMask,
+		close_game, &game);
 	mlx_loop(game.window.mlx);
 	free_resources(&game);
 	return (0);
