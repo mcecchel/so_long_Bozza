@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:52:43 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/13 15:07:22 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:44:00 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	initialize_enemies(t_game *game)
 	int	j;
 	int	en_index;
 
-	game->enemies = ft_calloc(game->player.total_enemies, sizeof(t_enemy));
+	game->enemies = ft_calloc(game->parse.total_enemies, sizeof(t_enemy));
 	if (!game->enemies)
 		error_exit("Error\nMemory allocation failed\n", game);
 	i = -1;
@@ -46,7 +46,7 @@ t_enemy	*is_enemy(t_game *game, int x, int y)
 	int	i;
 
 	i = 0;
-	while (i < game->player.total_enemies)
+	while (i < game->parse.total_enemies)
 	{
 		if (game->enemies[i].pos_x == x && game->enemies[i].pos_y == y)
 			return (&game->enemies[i]);
@@ -103,7 +103,7 @@ void	move_all_enemies(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->player.total_enemies)
+	while (i < game->parse.total_enemies)
 	{
 		move_enemy(game, &game->enemies[i]);
 		i++;

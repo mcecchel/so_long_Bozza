@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:57:35 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/09 17:59:54 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:08:36 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ int	check_map_borders(t_game *game)
 	return (1);
 }
 
+void	check_valid_char(char c, t_game *game)
+{
+	if (c != 'P' && c != 'C' && c != 'N' && c != 'E' && c != '1' && c != '0')
+	{
+		error_exit("Error\nInvalid character in map\n", game);
+	}
+}
+
 void	count_map_elements(t_game *game, int i, int j)
 {
 	i = 0;
@@ -61,6 +69,7 @@ void	count_map_elements(t_game *game, int i, int j)
 		j = 0;
 		while (j < game->map.columns && game->map.map[i][j])
 		{
+			check_valid_char(game->map.map[i][j], game);
 			if (game->map.map[i][j] == 'P')
 			{
 				game->player.px = j;
@@ -68,38 +77,26 @@ void	count_map_elements(t_game *game, int i, int j)
 				game->parse.player++;
 			}
 			else if (game->map.map[i][j] == 'C')
-				game->parse.collectible++;
+				game->parse.total_collectibles++;
 			else if (game->map.map[i][j] == 'N')
-				game->player.total_enemies++;
+				game->parse.total_enemies++;
 			else if (game->map.map[i][j] == 'E')
 				game->parse.exit_game++;
-			else if (game->map.map[i][j] != '1' && game->map.map[i][j] != '0')
-				return ;
 			j++;
 		}
 		i++;
 	}
+	
 }
 
 int	check_map_elements(t_game *game)
 {
 	count_map_elements(game, 0, 0);
 	if (game->parse.player != 1 || game->parse.exit_game != 1
-		|| game->parse.collectible < 1)
+		|| game->parse.total_collectibles < 1)
 	{
 		error_exit("Error\nInvalid map element\n", game);
 		return (0);
 	}
-	return (1);
-}
-
-int	validate_map(t_game *game)
-{
-	if (!is_rectangular(game))
-		return (0);
-	if (!check_map_borders(game))
-		return (0);
-	if (!check_map_elements(game))
-		return (0);
 	return (1);
 }

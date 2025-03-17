@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:20:36 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/02/24 19:46:50 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:31 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,4 @@ int	is_readable(const char *filename)
 		return (0);
 	close(fd);
 	return (1);
-}
-
-void	validate_file(const char *filename)
-{
-	if (!has_ber_extension(filename))
-		file_error_exit("Error\nInvalid file extension\n");
-	else if (!file_exists(filename))
-		file_error_exit("Error\nFile does not exist\n");
-	else if (is_folder(filename))
-		file_error_exit("Error\nFile is a directory\n");
-	else if (!is_readable(filename))
-		file_error_exit("Error\nFile is not readable\n");
-	else
-		return ;
 }

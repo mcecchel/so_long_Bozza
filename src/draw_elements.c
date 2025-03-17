@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:05:46 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/13 15:49:34 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:45:05 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_collectibles(t_game *game)
 	t_collectible	coll;
 
 	i = 0;
-	while (i < game->player.total_collectibles)
+	while (i < game->parse.total_collectibles)
 	{
 		coll = game->collectibles[i];
 		if (coll.sprite)
@@ -76,7 +76,7 @@ void	draw_enemies(t_game *game)
 	t_enemy	enemy;
 
 	i = 0;
-	while (i < game->player.total_enemies)
+	while (i < game->parse.total_enemies)
 	{
 		enemy = game->enemies[i];
 		if (enemy.sprite)

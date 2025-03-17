@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:59:00 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/09 18:02:03 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:42:54 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,4 @@ int	check_reachability(t_game *game, char **map)
 		i++;
 	}
 	return (1);
-}
-
-int	validate_path(t_game *game)
-{
-	int			i;
-	char		**map_copy;
-	int			reached;
-
-	i = 0;
-	find_player(game);
-	map_copy = ft_calloc(game->map.rows + 1, sizeof(char *));
-	while (i < game->map.rows)
-	{
-		map_copy[i] = ft_strdup(game->map.map[i]);
-		if (!map_copy[i])
-			return (free_matrix(map_copy),
-				error_exit("Error\nMemory allocation failed\n", game), 0);
-		i++;
-	}
-	flood_fill(game, map_copy, game->player.px, game->player.py);
-	reached = check_reachability(game, map_copy);
-	free_matrix(map_copy);
-	return (reached);
 }

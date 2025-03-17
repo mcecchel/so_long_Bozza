@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:40:49 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/13 16:02:58 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:44:40 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	handle_collectibles(t_game *game, int new_x_pos, int new_y_pos)
 		game->map.map[new_y_pos][new_x_pos] = '0';
 		collectible->pos_x = -1;
 		printf("Item collected! You have: %d of %d\n",
-			game->player.collected_items, game->player.total_collectibles);
+			game->player.collected_items, game->parse.total_collectibles);
 	}
 }
 

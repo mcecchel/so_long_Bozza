@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:19:19 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/13 15:07:31 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:43:38 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	initialize_collectibles(t_game *game)
 	int	j;
 	int	coll_index;
 
-	game->collectibles = ft_calloc(game->player.total_collectibles,
+	game->collectibles = ft_calloc(game->parse.total_collectibles,
 			sizeof(t_collectible));
 	if (!game->collectibles)
 		error_exit("Error\nMemory allocation failed\n", game);
@@ -50,7 +50,7 @@ t_collectible	*is_collectible(t_game *game, int x, int y)
 	int	i;
 
 	i = 0;
-	while (i < game->player.total_collectibles)
+	while (i < game->parse.total_collectibles)
 	{
 		if (game->collectibles[i].pos_x == x
 			&& game->collectibles[i].pos_y == y)
@@ -62,7 +62,7 @@ t_collectible	*is_collectible(t_game *game, int x, int y)
 
 bool	all_collected(t_game *game)
 {
-	if (game->player.collected_items == game->player.total_collectibles)
+	if (game->player.collected_items == game->parse.total_collectibles)
 		return (true);
 	return (false);
 }

@@ -6,7 +6,7 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/03/13 16:03:17 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/03/17 15:42:17 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC		= 	src/game_utils.c \
 			src/load_map.c \
 			src/game_movements.c \
 			src/draw_elements.c \
+			src/handle_keys.c \
 			src/initialize_game.c \
 			src/close_game.c \
 			main.c

@@ -6,60 +6,58 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:29:06 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/13 15:50:47 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:38 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	handle_movement(int keycode, t_game *game,
-	int *new_x_pos, int *new_y_pos)
+void	validate_file(const char *filename)
 {
-	if (keycode == XK_Up)
-	{
-		*new_y_pos -= 1;
-		game->player.sprite = game->sprites.player.back;
-	}
-	else if (keycode == XK_Down)
-	{
-		*new_y_pos += 1;
-		game->player.sprite = game->sprites.player.front;
-	}
-	else if (keycode == XK_Left)
-	{
-		*new_x_pos -= 1;
-		game->player.sprite = game->sprites.player.left;
-	}
-	else if (keycode == XK_Right)
-	{
-		*new_x_pos += 1;
-		game->player.sprite = game->sprites.player.right;
-	}
+	if (!has_ber_extension(filename))
+		file_error_exit("Error\nInvalid file extension\n");
+	else if (!file_exists(filename))
+		file_error_exit("Error\nFile does not exist\n");
+	else if (is_folder(filename))
+		file_error_exit("Error\nFile is a directory\n");
+	else if (!is_readable(filename))
+		file_error_exit("Error\nFile is not readable\n");
+	else
+		return ;
 }
 
-void	update_player_position(t_game *game, int new_x_pos, int new_y_pos)
+int	validate_map(t_game *game)
 {
-	move_player(game, new_x_pos, new_y_pos);
-	draw_map(game, game->window.mlx, game->window.mlx_win);
+	if (!is_rectangular(game))
+		return (0);
+	if (!check_map_borders(game))
+		return (0);
+	if (!check_map_elements(game))
+		return (0);
+	return (1);
 }
 
-int	handle_keys(int keycode, t_game *game)
+int	validate_path(t_game *game)
 {
-	int	new_x_pos;
-	int	new_y_pos;
+	int			i;
+	char		**map_copy;
+	int			reached;
 
-	new_x_pos = game->player.px;
-	new_y_pos = game->player.py;
-	if (keycode == XK_Escape)
+	i = 0;
+	find_player(game);
+	map_copy = ft_calloc(game->map.rows + 1, sizeof(char *));
+	while (i < game->map.rows)
 	{
-		free_resources(game);
-		exit(0);
+		map_copy[i] = ft_strdup(game->map.map[i]);
+		if (!map_copy[i])
+			return (free_matrix(map_copy),
+				error_exit("Error\nMemory allocation failed\n", game), 0);
+		i++;
 	}
-	handle_movement(keycode, game, &new_x_pos, &new_y_pos);
-	if (keycode == XK_Up || keycode == XK_Down
-		|| keycode == XK_Left || keycode == XK_Right)
-		update_player_position(game, new_x_pos, new_y_pos);
-	return (0);
+	flood_fill(game, map_copy, game->player.px, game->player.py);
+	reached = check_reachability(game, map_copy);
+	free_matrix(map_copy);
+	return (reached);
 }
 
 void	initialize_game(t_game *game, void *mlx, void *mlx_win)
