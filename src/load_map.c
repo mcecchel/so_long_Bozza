@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:45:30 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 16:21:42 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:25:35 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ char	**load_map(const char *filename, t_game *game)
 	line = get_next_line(fd);
 	while (line)
 	{
-		game->map.map[i] = line;
+		game->map.map[i] = ft_strdup(line);
 		if (game->map.map[i][ft_strlen(line) - 1] == '\n')
 			game->map.map[i][ft_strlen(line) - 1] = '\0';
+		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
@@ -68,8 +69,8 @@ char	**read_map(const char *filename, t_game *game)
 	game->map.map = load_map(filename, game);
 	if (!validate_map(game))
 	{
-		file_error_exit("Error\nInvalid map\n");
 		free_matrix(game->map.map);
+		file_error_exit("Error\nInvalid map\n");
 	}
 	if (!validate_path(game))
 		error_exit("Error\nInvalid path\n", game);
