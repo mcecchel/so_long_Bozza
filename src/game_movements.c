@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:40:49 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 14:44:40 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:31:48 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	show_moves(t_game *game)
 	moves = ft_itoa(game->moves);
 	if (!moves)
 	{
-		printf("Errore: ft_itoa ha restituito NULL\n");
+		ft_printf("Errore: ft_itoa ha restituito NULL\n");
 		return ;
 	}
 	moves_str = ft_strjoin("Moves: ", moves);
 	free(moves);
 	if (!moves_str)
 	{
-		printf("Errore: ft_strjoin ha restituito NULL\n");
+		ft_printf("Errore: ft_strjoin ha restituito NULL\n");
 		return ;
 	}
 	mlx_put_image_to_window(game->window.mlx, game->window.mlx_win,
@@ -47,7 +47,7 @@ void	handle_collectibles(t_game *game, int new_x_pos, int new_y_pos)
 		game->player.collected_items++;
 		game->map.map[new_y_pos][new_x_pos] = '0';
 		collectible->pos_x = -1;
-		printf("Item collected! You have: %d of %d\n",
+		ft_printf("Item collected! You have: %d of %d\n",
 			game->player.collected_items, game->parse.total_collectibles);
 	}
 }
@@ -59,7 +59,7 @@ void	handle_enemies(t_game *game, int new_x_pos, int new_y_pos)
 	enemy = is_enemy(game, new_x_pos, new_y_pos);
 	if (enemy)
 	{
-		printf("Seems you have been caught by an enemy,"
+		ft_printf("Seems you have been caught by an enemy,"
 			"AHAH.(read with Nelson voice)\a\n");
 		free_resources(game);
 		exit(0);
@@ -82,11 +82,11 @@ void	move_player(t_game *game, int new_x_pos, int new_y_pos)
 		if (game->map.map[new_y_pos][new_x_pos] == 'E')
 		{
 			if (!all_collected(game))
-				printf("Error\nNice try..."
+				ft_printf("Error\nNice try..."
 					"You must collect all items to unlock the exit\n");
 			else
 			{
-				printf("Congratulations! You have collected all items"
+				ft_printf("Congratulations! You have collected all items"
 					"and reached the exit!\n");
 				free_resources(game);
 				exit(0);

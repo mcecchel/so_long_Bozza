@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/02 16:46:33 by marianna          #+#    #+#             */
-/*   Updated: 2025/03/12 19:10:21 by mcecchel         ###   ########.fr       */
+/*   Created: 2025/03/02 16:46:33 by mcecchel          #+#    #+#             */
+/*   Updated: 2025/03/20 18:34:10 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	get_player_sprite(t_game *game)
 	if (!game->sprites.player.front || !game->sprites.player.back
 		|| !game->sprites.player.right || !game->sprites.player.left)
 	{
-		printf("Error\nFailed to load player sprite\n");
+		ft_printf("Error\nFailed to load player sprite\n");
 		free_resources(game);
 		exit(1);
 	}
@@ -50,7 +50,7 @@ void	get_coll_sprite(t_game *game)
 	if (!game->sprites.collectible.coll1 || !game->sprites.collectible.coll2
 		|| !game->sprites.collectible.coll3 || !game->sprites.collectible.coll4)
 	{
-		printf("Error\nFailed to load collectible sprite\n");
+		ft_printf("Error\nFailed to load collectible sprite\n");
 		free_resources(game);
 		exit(1);
 	}
@@ -67,7 +67,7 @@ void	get_enemy_sprite(t_game *game)
 			"./textures/enemy_sx.xpm", &width, &height);
 	if (!game->sprites.enemy.dx || !game->sprites.enemy.sx)
 	{
-		printf("Error\nFailed to load enemy sprite\n");
+		ft_printf("Error\nFailed to load enemy sprite\n");
 		free_resources(game);
 		exit(1);
 	}
@@ -89,7 +89,7 @@ void	get_other_sprite(t_game *game)
 	if (!game->sprites.wall || !game->sprites.floor || !game->sprites.exit
 		|| !game->sprites.moves_background)
 	{
-		printf("Error\nFailed to load textures\n");
+		ft_printf("Error\nFailed to load textures\n");
 		free_resources(game);
 		exit(1);
 	}
