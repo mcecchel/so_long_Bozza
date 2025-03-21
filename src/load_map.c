@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:45:30 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/18 16:25:35 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:35:32 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	**load_map(const char *filename, t_game *game)
 		line = get_next_line(fd);
 		i++;
 	}
-	game->map.map[i] = NULL;
 	return (close(fd), game->map.map);
 }
 

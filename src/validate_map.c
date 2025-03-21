@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:57:35 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 16:08:36 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:31:22 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	count_map_elements(t_game *game, int i, int j)
 		}
 		i++;
 	}
-	
 }
 
 int	check_map_elements(t_game *game)

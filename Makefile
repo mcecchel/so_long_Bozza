@@ -6,16 +6,16 @@
 #    By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/07 16:16:48 by mcecchel          #+#    #+#              #
-#    Updated: 2025/03/17 15:42:17 by mcecchel         ###   ########.fr        #
+#    Updated: 2025/03/21 14:38:18 by mcecchel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror -g -pedantic -I. -ILibft_complete -Imlx_linux
+CFLAGS		= -Wall -Wextra -Werror -g -pedantic -I. -ILibft -Imlx_linux
 
 # Libft
-LIBFT_DIR	= Libft_complete
+LIBFT_DIR	= Libft
 LIBFT_LIB	= $(LIBFT_DIR)/libft.a
 
 # MiniLibX
