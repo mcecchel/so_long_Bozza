@@ -6,11 +6,11 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:10:17 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 15:44:56 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:01:34 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H	
+#ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "libft.h"
@@ -73,7 +73,7 @@ typedef struct s_collectible
 	int		pos_x;
 	int		pos_y;
 	void	*sprite;
-}				t_collectible;
+}				t_coll;
 
 typedef struct s_sprite_coll
 {
@@ -116,13 +116,13 @@ typedef struct s_game
 {
 	t_map			map;
 	t_parse			parse;
-	t_collectible	*collectibles;
+	t_coll			*collectibles;
 	t_sprites		sprites;
 	t_window		window;
 	t_player		player;
 	t_enemy			*enemies;
 	int				moves;
-}				t_game;	
+}				t_game;
 
 void	print_matrix(char **matrix);
 void	free_matrix(char **matrix);
@@ -153,20 +153,21 @@ void	get_coll_sprite(t_game *game);
 void	get_enemy_sprite(t_game *game);
 void	get_other_sprite(t_game *game);
 
-void			init_single_collectible(t_game *game, int i, int j, int *coll_index);
-void			initialize_collectibles(t_game *game);
-t_collectible	*is_collectible(t_game *game, int x, int y);
-bool			all_collected(t_game *game);
+void	init_single_collectible(t_game *game, int i, int j, int *coll_index);
+void	initialize_collectibles(t_game *game);
+t_coll	*is_collectible(t_game *game, int x, int y);
+bool	all_collected(t_game *game);
 
-void			initialize_enemies(t_game *game);
-t_enemy			*is_enemy(t_game *game, int x, int y);
-void			determine_new_position(t_game *game, t_enemy *enemy, int *new_x_pos, int *new_y_pos);
-void			move_enemy(t_game *game, t_enemy *enemy);
-void			move_all_enemies(t_game *game);
+void	initialize_enemies(t_game *game);
+t_enemy	*is_enemy(t_game *game, int x, int y);
+void	determine_new_position(t_game *game, t_enemy *enemy,
+			int *new_x_pos, int *new_y_pos);
+void	move_enemy(t_game *game, t_enemy *enemy);
+void	move_all_enemies(t_game *game);
 
-int				count_lines(const char *filename);
-char			**load_map(const char *filename, t_game *game);
-char			**read_map(const char *filename, t_game *game);
+int		count_lines(const char *filename);
+char	**load_map(const char *filename, t_game *game);
+char	**read_map(const char *filename, t_game *game);
 
 void	draw_tile(t_game *game, int i, int j);
 void	draw_player(t_game *game, void *mlx, void *mlx_win);
@@ -174,7 +175,8 @@ void	draw_map(t_game *game, void *mlx, void *mlx_win);
 void	draw_collectibles(t_game *game);
 void	draw_enemies(t_game *game);
 
-void	handle_movement(int keycode, t_game *game, int *new_x_pos, int *new_y_pos);
+void	handle_movement(int keycode, t_game *game,
+			int *new_x_pos, int *new_y_pos);
 void	update_player_position(t_game *game, int new_x_pos, int new_y_pos);
 int		handle_keys(int keycode, t_game *game);
 

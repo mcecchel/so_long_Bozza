@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:05:46 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 14:45:05 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:59:31 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_map(t_game *game, void *mlx, void *mlx_win)
 void	draw_collectibles(t_game *game)
 {
 	int				i;
-	t_collectible	coll;
+	t_coll	coll;
 
 	i = 0;
 	while (i < game->parse.total_collectibles)

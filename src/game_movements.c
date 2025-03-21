@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:40:49 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/20 18:31:48 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:59:31 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	show_moves(t_game *game)
 
 void	handle_collectibles(t_game *game, int new_x_pos, int new_y_pos)
 {
-	t_collectible	*collectible;
+	t_coll	*collectible;
 
 	collectible = is_collectible(game, new_x_pos, new_y_pos);
 	if (collectible)

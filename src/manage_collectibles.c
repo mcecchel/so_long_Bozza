@@ -6,7 +6,7 @@
 /*   By: mcecchel <mcecchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 15:19:19 by mcecchel          #+#    #+#             */
-/*   Updated: 2025/03/17 14:43:38 by mcecchel         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:59:31 by mcecchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initialize_collectibles(t_game *game)
 	int	coll_index;
 
 	game->collectibles = ft_calloc(game->parse.total_collectibles,
-			sizeof(t_collectible));
+			sizeof(t_coll));
 	if (!game->collectibles)
 		error_exit("Error\nMemory allocation failed\n", game);
 	i = -1;
@@ -45,7 +45,7 @@ void	initialize_collectibles(t_game *game)
 	}
 }
 
-t_collectible	*is_collectible(t_game *game, int x, int y)
+t_coll	*is_collectible(t_game *game, int x, int y)
 {
 	int	i;
 
